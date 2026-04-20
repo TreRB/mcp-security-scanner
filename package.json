@@ -1,0 +1,49 @@
+{
+  "name": "valtik-mcp-security-scanner",
+  "version": "0.1.0",
+  "description": "Static audit for Model Context Protocol (MCP) server source. Detects the 5 MCP attack patterns: prompt injection, shell passthrough, unbounded FS, SSRF via fetch tools, credential exposure. Plus supply chain issues.",
+  "type": "module",
+  "main": "src/scan.js",
+  "bin": {
+    "mcp-security-scanner": "src/cli.js",
+    "valtik-mcp-security-scanner": "src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test 'test/*.test.js'",
+    "start": "node src/cli.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "security",
+    "static-analysis",
+    "sast",
+    "audit",
+    "anthropic",
+    "llm-security",
+    "prompt-injection",
+    "valtik"
+  ],
+  "author": "Valtik Studios <hello@valtikstudios.com> (https://valtikstudios.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/TreRB/mcp-security-scanner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TreRB/mcp-security-scanner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TreRB/mcp-security-scanner/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.3"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ]
+}

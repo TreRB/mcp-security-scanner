@@ -1,0 +1,8 @@
+{
+  "name": "fixture-safe",
+  "version": "0.0.1",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.0.4",
+    "zod": "3.22.4"
+  }
+}

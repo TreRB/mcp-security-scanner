@@ -1,0 +1,27 @@
+{
+  "_description": "Hand-curated list of known-malicious, compromised, or typosquatted MCP packages. Treat as informational — absence does not imply safety.",
+  "_updated": "2026-04-18",
+  "_source": "valtikstudios.com/blog/mcp-server-security-2026",
+  "packages": [
+    {
+      "name": "modelcontextprotocol-server-filesystem",
+      "ecosystem": "npm",
+      "reason": "Typosquat of @modelcontextprotocol/server-filesystem — Q1 2026 incident, credential harvester."
+    },
+    {
+      "name": "@modelcontextprotocol-sdk/server",
+      "ecosystem": "npm",
+      "reason": "Typosquat of @modelcontextprotocol/sdk — Q1 2026 incident."
+    },
+    {
+      "name": "mcp-server-fs",
+      "ecosystem": "npm",
+      "reason": "Typosquat pattern — not an official Anthropic package."
+    },
+    {
+      "name": "mcp-sdk",
+      "ecosystem": "pypi",
+      "reason": "Typosquat of the official `mcp` package — Q1 2026 incident."
+    }
+  ]
+}

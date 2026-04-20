@@ -1,0 +1,14 @@
+{
+  "name": "fixture-vulnerable",
+  "version": "0.0.1",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "~3.22.0",
+    "axios": "*",
+    "modelcontextprotocol-server-filesystem": "1.0.0",
+    "lodash": ">=4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
