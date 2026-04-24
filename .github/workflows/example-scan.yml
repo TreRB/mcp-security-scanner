@@ -1,0 +1,50 @@
+name: "Example: MCP server security scan"
+
+# Copy this into your MCP-server repo's .github/workflows/ directory to
+# run the scanner on every push and nightly. Uploads findings to GitHub
+# Code Scanning via SARIF.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  mcp-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install scanner
+        run: npm install -g valtik-mcp-security-scanner
+
+      - name: Run MCP scan (SARIF)
+        run: |
+          mcp-security-scanner . \
+            --format sarif \
+            --out findings.sarif \
+            --ci
+
+      - name: Upload SARIF to GitHub Code Scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: findings.sarif
+          category: mcp-security
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcp-scan-report
+          path: findings.sarif

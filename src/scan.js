@@ -88,6 +88,7 @@ export function scan(root, opts = {}) {
     checks = CHECK_IDS,
     baseline = null,
     language = 'auto',
+    minSeverity = null,
   } = opts;
 
   const files = walk(root);
@@ -165,7 +166,15 @@ export function scan(root, opts = {}) {
 
   // Apply baseline filter
   const baselineSet = loadBaseline(baseline);
-  const filtered = findings.filter((f) => !baselineSet.has(fingerprint(f)));
+  let filtered = findings.filter((f) => !baselineSet.has(fingerprint(f)));
+
+  // Apply severity floor
+  if (minSeverity) {
+    const minRank = sevRank(minSeverity);
+    if (minRank !== -1) {
+      filtered = filtered.filter((f) => sevRank(f.severity) >= minRank);
+    }
+  }
 
   // Sort by severity descending, then file/line
   filtered.sort((a, b) => {

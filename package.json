@@ -1,7 +1,7 @@
 {
   "name": "valtik-mcp-security-scanner",
-  "version": "0.1.0",
-  "description": "Static audit for Model Context Protocol (MCP) server source. Detects the 5 MCP attack patterns: prompt injection, shell passthrough, unbounded FS, SSRF via fetch tools, credential exposure. Plus supply chain issues.",
+  "version": "0.2.0",
+  "description": "Static audit for Model Context Protocol (MCP) server source. Detects MCP attack patterns (prompt injection, shell passthrough, unbounded FS, SSRF, credential exposure) plus supply-chain issues. SARIF 2.1.0 + JSON + Markdown + text outputs, severity filtering, baseline support, 62 tests, CI-ready.",
   "type": "module",
   "main": "src/scan.js",
   "bin": {
