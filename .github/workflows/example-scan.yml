@@ -1,16 +1,24 @@
-name: "Example: MCP server security scan"
+name: "Example: MCP server security scan (TEMPLATE)"
 
-# Copy this into your MCP-server repo's .github/workflows/ directory to
-# run the scanner on every push and nightly. Uploads findings to GitHub
-# Code Scanning via SARIF.
+# TEMPLATE: copy this into your MCP-server repo's .github/workflows/
+# directory. In the scanner's own repo it's `workflow_dispatch`-only to
+# avoid running against itself — enable push/schedule triggers in your
+# copy.
+#
+# Uploads findings to GitHub Code Scanning via SARIF.
+#
+# When you copy this to your repo:
+#   1. Remove this comment block
+#   2. Swap the commented triggers for active ones
+#   3. Adjust the path argument (`.` scans repo root)
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "0 6 * * *"
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   branches: [main]
+  # schedule:
+  #   - cron: "0 6 * * *"
   workflow_dispatch:
 
 jobs:
@@ -25,8 +33,18 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install scanner
-        run: npm install -g valtik-mcp-security-scanner
+      - uses: actions/checkout@v4
+        with:
+          repository: TreRB/mcp-security-scanner
+          path: scanner
+
+      - name: Install scanner from source
+        run: |
+          cd scanner
+          npm install
+          npm link
+        # Alternative once published to npm:
+        # run: npm install -g valtik-mcp-security-scanner
 
       - name: Run MCP scan (SARIF)
         run: |

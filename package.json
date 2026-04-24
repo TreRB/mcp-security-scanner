@@ -9,7 +9,7 @@
     "valtik-mcp-security-scanner": "src/cli.js"
   },
   "scripts": {
-    "test": "node --test 'test/*.test.js'",
+    "test": "node --test test/checks.test.js test/cli.test.js test/scan.test.js test/sarif.test.js test/markdown.test.js",
     "start": "node src/cli.js"
   },
   "keywords": [
